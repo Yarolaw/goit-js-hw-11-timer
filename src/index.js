@@ -33,16 +33,17 @@ class CountdownTimer {
     return String(value).padStart(2, '0');
 }
    count() {
-    const time = targetDate - Date.now();
-    refs.days.textContent = Math.floor(time / (1000 * 60 * 60 * 24));
-    refs.hours.textContent = pad(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-    refs.mins.textContent = pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
-    refs.secs.textContent = pad(Math.floor((time % (1000 * 60)) / (1000)));
+    const time = this.targetDate - Date.now();
+    refs.days.textContent = this.pad(Math.floor(time / (1000 * 60 * 60 * 24)));
+    refs.hours.textContent = this.pad(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
+    refs.mins.textContent = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+    refs.secs.textContent = this.pad(Math.floor((time % (1000 * 60)) / (1000)));
    }
     
     start() {
+        this.count();
         interval = setInterval(() => {
-            this.count;
+            this.count();
         }, 1000);
     }
 }
@@ -52,3 +53,5 @@ const timer = new CountdownTimer({
   targetDate: new Date('Jan 01, 2021'),
 });
 timer.start();
+
+// визивати треба як функцію а не як колбек
